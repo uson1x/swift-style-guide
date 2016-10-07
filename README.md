@@ -1,25 +1,48 @@
-A guide to our Swift style and conventions.
-
-This is an attempt to encourage patterns that accomplish the following goals (in
-rough priority order):
-
- 1. Increased rigor, and decreased likelihood of programmer error
- 1. Increased clarity of intent
- 1. Reduced verbosity
- 1. Fewer debates about aesthetics
-
-If you have suggestions, please see our [contribution guidelines](CONTRIBUTING.md),
-then open a pull request. :zap:
-
-----
+A guide to Meethub Swift style and conventions.
 
 #### Whitespace
 
- * Tabs, not spaces.
+ * 4 spaces for Tabs.
  * End files with a newline.
  * Make liberal use of vertical whitespace to divide code into logical chunks.
  * Don’t leave trailing whitespace.
    * Not even leading indentation on blank lines.
+ * All functions should be at least one empty line apart each other.
+ * Use single spaces around return arrows (->) both in functions and in closures.  
+```swift
+func process() -> Int {
+    return 1
+}
+ ```
+ * Commas (,) should have no whitespace before it, and should have either one space or one newline after.
+ * Colons (:) used to indicate type should have one space after it and should have no whitespace before it.
+```swift
+func process(a: A, b: B) {
+}
+```
+ * If-then-else
+```swift
+if nice {
+    takeIt()
+} else {
+    throwAway()
+}
+```
+ * One condition guard on one line
+```swift
+guard let candy = present as? Candy else { return "not candy at all" }
+```
+ * Multiple conditions guard on multiple lines
+```swift
+guard
+    let candy = present as? Candy,
+    let tastyCake = cake as? TastyCake
+else {
+    return "no party"
+}
+party()
+```
+ 
 
 #### Prefer `let`-bindings over `var`-bindings wherever possible
 
@@ -84,41 +107,6 @@ Where possible, use `let foo: FooType?` instead of `let foo: FooType!` if `foo` 
 
 _Rationale:_ Explicit optionals result in safer code. Implicitly unwrapped optionals have the potential of crashing at runtime.
 
-#### Prefer implicit getters on read-only properties and subscripts
-
-When possible, omit the `get` keyword on read-only computed properties and
-read-only subscripts.
-
-So, write these:
-
-```swift
-var myGreatProperty: Int {
-	return 4
-}
-
-subscript(index: Int) -> T {
-    return objects[index]
-}
-```
-
-… not these:
-
-```swift
-var myGreatProperty: Int {
-	get {
-		return 4
-	}
-}
-
-subscript(index: Int) -> T {
-    get {
-        return objects[index]
-    }
-}
-```
-
-_Rationale:_ The intent and meaning of the first version are clear, and results in less code.
-
 #### Always specify access control explicitly for top-level definitions
 
 Top-level functions, types, and variables should always have explicit access control specifiers:
@@ -155,44 +143,9 @@ func makeCoffee(type: CoffeeType) -> Coffee { ... }
 _Rationale:_ The type specifier is saying something about the _identifier_ so
 it should be positioned with it.
 
-Also, when specifying the type of a dictionary, always put the colon immediately
-after the key type, followed by a space and then the value type.
-
-```swift
-let capitals: [Country: City] = [ Sweden: Stockholm ]
-```
-
 #### Only explicitly refer to `self` when required
 
 When accessing properties or methods on `self`, leave the reference to `self` implicit by default:
-
-```swift
-private class History {
-	var events: [Event]
-
-	func rewrite() {
-		events = []
-	}
-}
-```
-
-Only include the explicit keyword when required by the language—for example, in a closure, or when parameter names conflict:
-
-```swift
-extension History {
-	init(events: [Event]) {
-		self.events = events
-	}
-
-	var whenVictorious: () -> () {
-		return {
-			self.rewrite()
-		}
-	}
-}
-```
-
-_Rationale:_ This makes the capturing semantics of `self` stand out more in closures, and avoids verbosity elsewhere.
 
 #### Prefer structs over classes
 
