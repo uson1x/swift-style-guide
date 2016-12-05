@@ -32,6 +32,15 @@ if nice {
 ```swift
 guard let candy = present as? Candy else { return "not candy at all" }
 ```
+
+* One condition guard with multiple lines in `else` statement is like that:
+```swift
+guard let candy = present as? Candy else {
+    getMoney()    
+    buyCandies()
+}
+```
+
  * Multiple conditions guard on multiple lines
 ```swift
 guard
