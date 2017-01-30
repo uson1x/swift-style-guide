@@ -263,11 +263,15 @@ func <|< <A>(lhs: A, rhs: A) -> A
 
 _Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 
-#### Translations
+#### Use /// for Swift Documentation, // for comments
 
-* [中文版](https://github.com/Artwalk/swift-style-guide/blob/master/README_CN.md)
-* [日本語版](https://github.com/jarinosuke/swift-style-guide/blob/master/README_JP.md)
-* [한국어판](https://github.com/minsOne/swift-style-guide/blob/master/README_KR.md)
-* [Versión en Español](https://github.com/antoniosejas/swift-style-guide/blob/spanish/README-ES.md)
-* [Versão em Português do Brasil](https://github.com/fernandocastor/swift-style-guide/blob/master/README-PTBR.md)
-* [فارسی](https://github.com/mohpor/swift-style-guide/blob/Persian/README-FA.md)
+Use triple-slash /// to annotate classes, functions and variables where appropriate.
+
+```swift
+/// The following function was so badly thought out that it
+/// required a special passage before it.
+func nobodyUnderstandsHowItWorks() {
+}
+```
+
+_Rationale:_ When you feel that a function, class or variable needs to be annotated or explained, such explanation might be useful to be present in Xcode help dialog. For such cases, please, use three-slashes annotation before the declaration itself.
