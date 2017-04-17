@@ -4,7 +4,7 @@ A guide to Meethub Swift style and conventions.
 
  * 4 spaces for Tabs.
  * End files with a newline.
- * Make liberal use of vertical whitespace to divide code into logical chunks.
+ * Maximum one whitespace line between logical chunks of code. If it's tempting to add more whitespace lines, consider breaking the code down to multiple methods instead.
  * Don’t leave trailing whitespace.
    * Not even leading indentation on blank lines.
  * All functions should be at least one empty line apart each other.
@@ -79,9 +79,7 @@ if n.isNumber {
 
 use this:
 ```swift
-guard n.isNumber else {
-    return
-}
+guard n.isNumber else { return }
 // Use n here
 ```
 
