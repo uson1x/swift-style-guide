@@ -4,6 +4,10 @@ A guide to Meethub Swift style and conventions.
 
  * 4 spaces for Tabs.
  * End files with a newline.
+ * Arithmetical operators are always delimited with spaces
+ ```swift
+ let y = (x + max(one, two) / 2) * 5
+ ```
  * Maximum one whitespace line between logical chunks of code. If it's tempting to add more whitespace lines, consider breaking the code down to multiple methods instead.
  * Don’t leave trailing whitespace.
    * Not even leading indentation on blank lines.
