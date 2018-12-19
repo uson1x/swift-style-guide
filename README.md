@@ -55,7 +55,20 @@ else {
 }
 party()
 ```
- 
+
+ * When naming types and vars, add Handler suffix to vars and Closure suffix to Types
+ ```swift
+ class ViewController {
+     var completionHandler: CompletionClosure
+ }
+ ```
+
+ * When using closure-vars in a manner similar to delegate pattern, pass the object itself into it as a param
+ ```swift
+ class Coordinator {
+     var cancelHandler: ((_ coordinator: Coordinator) -> Void)?
+ }
+ ```
 
 #### Prefer `let`-bindings over `var`-bindings wherever possible
 
@@ -277,3 +290,4 @@ func nobodyUnderstandsHowItWorks() {
 ```
 
 _Rationale:_ When you feel that a function, class or variable needs to be annotated or explained, such explanation might be useful to be present in Xcode help dialog. For such cases, please, use three-slashes annotation before the declaration itself.
+
